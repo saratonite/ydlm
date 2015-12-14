@@ -9,6 +9,17 @@ DOWNLOAD_LIST_FILE=.playlist
 
 CUR_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
+function info(){
+	echo -e "\e[35m\t\tYDLM 0.0  "
+
+	echo -e '\tYoutube-dl Download Manager'
+	echo -e '\tVersion 0.0 \e[0m'
+}
+
+# Call Info
+info
+
+
 
 
 if [ ${#1} = 0 ]
@@ -30,9 +41,9 @@ if [ "$( which youtube-dl )"  = "" ]; then
 fi
 # Check the file exists in the folder 
 if [ -f "$DOWNLOAD_LIST_FILE" ]; then
-	echo -e "Playlist file loaded";
+	echo -e "Download list file loaded";
 	#Execute youtube-dl command
 	youtube-dl -a $DOWNLOAD_LIST_FILE
 else
-	echo -e "\e[31mPlaylist file not found :(\e[0m";
+	echo -e "\e[31mDownload list file not found :(\e[0m";
 fi
