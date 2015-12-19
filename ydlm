@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# Title 	: 	Youtube-dl Download Manager <ydpm>
+# Title 	: 	Youtube-dl Manager <ydpm>
 # Author	:	Sarath <sarath.hacks@gmail.com>
 # Manage download urls in a file , Inspired by Bower, Composer , NPM
 
