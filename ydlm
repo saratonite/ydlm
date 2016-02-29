@@ -4,8 +4,9 @@
 # Author	:	Sarath <sarath.hacks@gmail.com>
 # Manage download urls in a file , Inspired by Bower, Composer , NPM
 
-# Default playlist file 
-DOWNLOAD_LIST_FILE=.playlist
+# Default playlist file
+OLD_LIST_FILE=.playlist
+DOWNLOAD_LIST_FILE=.downloadlist
 
 CUR_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
@@ -16,8 +17,18 @@ function info(){
 	echo -e '\tVersion 0.0 \e[0m'
 }
 
+function convertold(){
+	# Check the file exists in the folder
+	if [ -f "$OLD_LIST_FILE" ]; then
+		mv "OLD_LIST_FILE" "DOWNLOAD_LIST_FILE"
+	fi
+}
+
 # Call Info
 info
+
+# Call convertold
+convertold
 
 
 
@@ -27,10 +38,10 @@ if [ ${#1} = 0 ]
 	echo "Nothing as parameter"
 else
 	# check a command
-	
+
 	#if not command
 	  # check the url already exists
-	echo $1 >> .playlist
+	echo $1 >> "$DOWNLOAD_LIST_FILE"
 fi
 
 
@@ -39,7 +50,7 @@ if [ "$( which youtube-dl )"  = "" ]; then
 	>&2 echo -e "\e[1;31mError : youtube-dl not installed in you system\e[0m";
 	exit 1;
 fi
-# Check the file exists in the folder 
+# Check the file exists in the folder
 if [ -f "$DOWNLOAD_LIST_FILE" ]; then
 	echo -e "Download list file loaded";
 	#Execute youtube-dl command
