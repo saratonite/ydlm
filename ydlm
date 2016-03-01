@@ -20,7 +20,7 @@ function info(){
 function convertold(){
 	# Check the file exists in the folder
 	if [ -f "$OLD_LIST_FILE" ]; then
-		mv "OLD_LIST_FILE" "DOWNLOAD_LIST_FILE"
+		mv "$OLD_LIST_FILE" "$DOWNLOAD_LIST_FILE"
 	fi
 }
 
