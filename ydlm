@@ -17,6 +17,14 @@ function info(){
 	echo -e '\tVersion 0.0 \e[0m'
 }
 
+function checkYDL(){
+	if [ "$( which youtube-dl )"  = "" ]; then
+		# Omit a Std Error message
+		>&2 echo -e "\e[1;31mError : youtube-dl not installed in you system\e[0m";
+		exit 1;
+	fi
+}
+
 function convertold(){
 	# Check the file exists in the folder
 	if [ -f "$OLD_LIST_FILE" ]; then
@@ -41,18 +49,18 @@ else
 
 	#if not command
 	  # check the url already exists
+	checkYDL
 	echo $1 >> "$DOWNLOAD_LIST_FILE"
+	youtube-dl $1
+
 fi
 
 
-if [ "$( which youtube-dl )"  = "" ]; then
-	# Omit a Std Error message
-	>&2 echo -e "\e[1;31mError : youtube-dl not installed in you system\e[0m";
-	exit 1;
-fi
+
 # Check the file exists in the folder
 if [ -f "$DOWNLOAD_LIST_FILE" ]; then
 	echo -e "Download list file loaded";
+	checkYDL
 	#Execute youtube-dl command
 	youtube-dl -a $DOWNLOAD_LIST_FILE
 else
