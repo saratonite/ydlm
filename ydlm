@@ -33,7 +33,7 @@ convertold
 
 # Check command line arguments
 
-if [ ${#1}=0 ];then
+if [ ${#1} = 0 ];then
 	echo "No parameters provided"
 else
 	# Append given url to download list file
