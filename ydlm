@@ -1,20 +1,20 @@
 #! /bin/bash
 
-# Title 	: 	Youtube-dl Manager <ydpm>
+# Title 	: 	Youtube Manager <ydpm>
 # Author	:	Sarath <sarath.hacks@gmail.com>
 # Manage download urls in a file , Inspired by Bower, Composer , NPM
 
 # Default playlist file
 OLD_LIST_FILE=.playlist
 DOWNLOAD_LIST_FILE=.downloadlist
-
+VERSION=1.0.5
 CUR_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 function info(){
-	echo -e "\e[35m\t\tYDLM 0.0  "
+	echo -e "\e[35m\t\tYDLM $VERSION  "
 
-	echo -e '\tYoutube-dl Download Manager'
-	echo -e '\tVersion 0.0 \e[0m'
+	echo -e '\tYoutube Download Manager'
+	echo -e "\tVersion $VERSION \e[0m"
 }
 
 function convertold(){
@@ -31,30 +31,27 @@ info
 convertold
 
 
-
+# Check command line arguments
 
 if [ ${#1} = 0 ]
 	then
-	echo "Nothing as parameter"
-else
-	# check a command
-
-	#if not command
-	  # check the url already exists
+	echo "No parameters provided
 	echo $1 >> "$DOWNLOAD_LIST_FILE"
 fi
 
+# Check if youtube-dl installed or not
 
 if [ "$( which youtube-dl )"  = "" ]; then
 	# Omit a Std Error message
 	>&2 echo -e "\e[1;31mError : youtube-dl not installed in you system\e[0m";
 	exit 1;
 fi
+
 # Check the file exists in the folder
 if [ -f "$DOWNLOAD_LIST_FILE" ]; then
 	echo -e "Download list file loaded";
 	#Execute youtube-dl command
-	youtube-dl -a $DOWNLOAD_LIST_FILE
+	youtube-dl -f mp4 -a $DOWNLOAD_LIST_FILE
 else
 	echo -e "\e[31mDownload list file not found :(\e[0m";
 fi
