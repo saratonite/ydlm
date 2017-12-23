@@ -33,11 +33,13 @@ convertold
 
 # Check command line arguments
 
-if [ ${#1} = 0 ]
-	then
-	echo "No parameters provided
+if [ ${#1}=0 ];then
+	echo "No parameters provided"
+else
+	# Append given url to download list file
 	echo $1 >> "$DOWNLOAD_LIST_FILE"
 fi
+
 
 # Check if youtube-dl installed or not
 
