@@ -36,14 +36,20 @@ convertold
 if [ ${#1} = 0 ];then
 	echo "No parameters provided"
 else
-	# Check this url already exists ?   
-        if grep -Fxq "$1" $DOWNLOAD_LIST_FILE 
+	# Check if download file list exists
+	if [ -f $DOWNLOAD_LIST_FILE ];
 	then
-	   echo "info: Entry already exists!!"
+	    # Check this url already exists ?   
+            if grep -Fxq "$1" $DOWNLOAD_LIST_FILE 
+	    then
+	     echo "info: Entry already exists!!"
+	    else
+	    # Append given url to download list file
+	     echo $1 >> "$DOWNLOAD_LIST_FILE"
+  	    fi
 	else
-	  # Append given url to download list file
-	   echo $1 >> "$DOWNLOAD_LIST_FILE"
-  	 fi
+	 echo $1 >> "$DOWNLOAD_LIST_FILE"
+	fi
 fi
 
 
