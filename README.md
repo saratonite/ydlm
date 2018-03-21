@@ -1,13 +1,13 @@
 # ydlm
 :arrow_down_small: Youtube Download List Manager 
 
-A small bash script to manage youtube downloads :fire: (Not a great IDEA but just a small hack to save time :clock11:)
+A small bash script to manage youtube download links into a .download file (plain text file) :fire: (Not a great IDEA but just a small hack to save time :clock11:)
 
 ## Intsallation 
 
 run install script
 ```bash
-./install.sh
+sudo ./install.sh
 
 ```
 
